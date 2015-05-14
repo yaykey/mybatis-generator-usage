@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	
+	<classPathEntry location="D:/Java/mysql-connector-java-5.1.15/mysql-connector-java-5.1.15-bin.jar" 
+		/>
+
+	<context id="MySQLTables" targetRuntime="MyBatis3">
+
+		<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+			<property name="fileName" value="MapperConfig.xml" />
+			<property name="targetPackage" value="config" />
+			<property name="targetProject" value="src/main/resource" />
+		</plugin>
+		
+		<plugin type="com.feinno.mybatis.plugins.ExampleClassPathPlugin">			 
+             <property name="enableExamplePath" value="true" />
+             <property name="extendExample" value="com.feinno.fdc.report.framework.module.example.BaseExample" />
+		</plugin>
+		
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		
+		<commentGenerator>
+			<!-- 关闭注解信息 -->
+			<property name="suppressAllComments" value="true"/>
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		 
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.251.149:3306/c8" 
+			userId="userc8"
+			password="c8test">
+		</jdbcConnection>
+
+		<javaModelGenerator targetPackage="com.feinno.fdc.report.framework.module.cmpp"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.feinno.fdc.report.framework.module.cmpp"
+			targetProject="src/main/resource">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.feinno.fdc.report.framework.persistence.mapper.cmpp"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+
+			<property name="enableCountByExample" value="true" />
+			<property name="enableSelectByPrimaryKey" value="true" />
+			<property name="enableDeleteByPrimaryKey" value="true" />
+		</javaClientGenerator>
+		
+       	<!-- <table tableName="UI_CMPP_KPI_LOG" domainObjectName="CmppKpiLog">
+		</table> -->
+		<table tableName="RPT_KPI_SMS_SEND" domainObjectName="RptKpiSmsSend">
+		</table>
+		
+        		
+	</context>
+</generatorConfiguration> 
