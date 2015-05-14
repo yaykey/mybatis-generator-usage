@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="D:/Java/mysql-connector-java-5.1.15/mysql-connector-java-5.1.15-bin.jar" 
+		/>
+	<!--<classPathEntry location="D:/eclipse/workspace/fdcssi/db2java.zip" /> -->
+	<!-- <classPathEntry location="lib/db2jcc-9.7.jar" /> -->
+
+	<context id="DB2Tables" targetRuntime="Ibatis2Java5">
+
+		<!-- <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+			<property name="fileName" value="MapperConfig.xml" />
+			<property name="targetPackage" value="config" />
+			<property name="targetProject" value="src/main/resource" />
+		</plugin> -->
+		
+		<!-- <plugin type="com.feinno.mybatis.plugins.ExampleClassPathPlugin">			 
+             <property name="enableExamplePath" value="true" />
+             <property name="extendExample" value="com.feinno.fdc.report.framework.module.example.BaseExample" />
+		</plugin> -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		
+
+		<commentGenerator>
+			<!-- 关闭注解信息 -->
+			<property name="suppressAllComments" value="false"/>
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		 
+
+		<!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.0.10.35:1521:htcom" 
+			userId="ht4a" password="123"> <classPathEntry location="D:/workspace/ht4a/lib/class12.jar" 
+			/> </jdbcConnection> -->
+
+		<!--<jdbcConnection driverClass="com.microsoft.jdbc.sqlserver.SQLServerDriver" 
+			connectionURL="jdbc:microsoft:sqlserver://10.0.10.35:1433;databaseName=htcom" 
+			userId="ht4a" password="123"> <classPathEntry location="D:/workspace/ht4a/lib/sqljdbc.jar" 
+			/> </jdbcConnection> -->
+
+		<!--<jdbcConnection driverClass="Com.ibm.db2.jdbc.net.DB2Driver" connectionURL="jdbc:db2://10.0.10.35:50000/htcom" 
+			userId="ht4a" password="123"> <classPathEntry location="D:/workspace/ht4a/lib/db2java.jar" 
+			/> </jdbcConnection> -->
+
+		<!--<jdbcConnection driverClass="sun.jdbc.odbc.JdbcOdbcDriver" connectionURL="jdbc:odbc:htcom" 
+			userId="ht4a" password="123"> <classPathEntry location="D:/workspace/ht4a/lib/rt.jar" 
+			/> </jdbcConnection> -->
+
+		<!--<jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://10.0.10.35/htcom" 
+			userId="ht4a" password="123"> <classPathEntry location="D:/workspace/ht4a/lib/pgjdbc2.jar" 
+			/> </jdbcConnection> -->
+
+		<!--<jdbcConnection driverClass="sun.jdbc.odbc.JdbcOdbcDriver" connectionURL="jdbc:odbc:driver={Microsoft 
+			Access Driver (*.mdb)};DBQ=F:\\data.mdb" userId="ht4a" password="123"> <classPathEntry 
+			location="D:/workspace/ht4a/lib/rt.jar" /> </jdbcConnection> -->
+
+		<!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://10.0.10.35:3306/htcom" 
+			userId="ht4a" password="123"> <classPathEntry location="D:/workspace/ht4a/lib/mysqldriver.jar" 
+			/> </jdbcConnection> -->
+
+		<!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/test" 
+			userId="qgd" password="123456"> </jdbcConnection> -->
+
+		<!--<jdbcConnection driverClass="com.ibm.db2.jdbc.net.DB2Driver" connectionURL="jdbc:db2://192.168.110.41:50000/report" 
+			userId="appuser" password="appuser"> <classPathEntry location="D:/eclipse/workspace/fdcssi/db2java.zip" 
+			/> </jdbcConnection> -->
+
+		<!-- COM.ibm.db2.jdbc.app.DB2Driver com.ibm.db2.jdbc.net.DB2Driver com.ibm.db2.jcc.DB2Driver -->
+
+		<jdbcConnection driverClass="com.ibm.db2.jcc.DB2Driver"
+			connectionURL="jdbc:db2://192.168.110.41:50000/report" 
+			userId="appuser"
+			password="appuser">
+		</jdbcConnection>
+
+		<!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/ssm" 
+			userId="root" password="root"> </jdbcConnection> -->
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.feinno.fdc.report.framework.module"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.feinno.fdc.report.framework.module"
+			targetProject="src/main/resource">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.feinno.fdc.report.framework.persistence.mapper"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+
+			<property name="enableCountByExample" value="true" />
+			<property name="enableSelectByPrimaryKey" value="true" />
+			<property name="enableDeleteByPrimaryKey" value="true" />
+		</javaClientGenerator>
+		
+
+		<!--<table tableName="myuser" domainObjectName="Myuser">
+		</table>-->
+		
+		<table tableName="UI_DEPARTMENT" domainObjectName="Department">
+		</table>
+		
+		<!-- <table tableName="UI_FW_FUNCTION" domainObjectName="Function">
+		</table>
+
+		<table tableName="UI_FW_MODULE" domainObjectName="Module">
+		</table>
+		
+		<table tableName="UI_FW_ROLE" domainObjectName="Role">
+		</table>
+		
+		<table tableName="UI_FW_USER" domainObjectName="User">
+		</table>
+		
+		<table tableName="UI_MEMCACHE_REPORT" domainObjectName="MemcacheReport">
+		</table>
+		
+		<table tableName="UI_MEMCACHE_REPORT_CONDITION" domainObjectName="MemcacheReportCondition">
+		</table>
+		
+		<table tableName="UI_MEMCACHE_REPORT_DATE" domainObjectName="MemcacheReportDate">
+		</table>
+				
+		<table tableName="UI_TASK" domainObjectName="Task">
+		</table>
+		
+		<table tableName="D_PROVINCE" domainObjectName="Province">
+		</table>
+		
+		<table tableName="D_DIM" domainObjectName="DDim">
+		</table>
+		<table tableName="D_DIM_TYPE" domainObjectName="DDimType">
+		</table> -->
+		
+
+	</context>
+</generatorConfiguration> 
