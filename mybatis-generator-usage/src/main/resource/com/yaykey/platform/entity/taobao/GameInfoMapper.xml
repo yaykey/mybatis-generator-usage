@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaykey.platform.mapper.taobao.GameInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yaykey.platform.entity.taobao.GameInfo" >
+    <id column="gid" property="gid" jdbcType="INTEGER" />
+    <result column="appKey" property="appkey" jdbcType="VARCHAR" />
+    <result column="gamename" property="gamename" jdbcType="VARCHAR" />
+    <result column="packagename" property="packagename" jdbcType="VARCHAR" />
+    <result column="iconUrl" property="iconurl" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="downloadUrl" property="downloadurl" jdbcType="VARCHAR" />
+    <result column="adsUrl" property="adsurl" jdbcType="VARCHAR" />
+    <result column="adsVideoUrl" property="adsvideourl" jdbcType="VARCHAR" />
+    <result column="pic1" property="pic1" jdbcType="VARCHAR" />
+    <result column="pic2" property="pic2" jdbcType="VARCHAR" />
+    <result column="pic3" property="pic3" jdbcType="VARCHAR" />
+    <result column="pic4" property="pic4" jdbcType="VARCHAR" />
+    <result column="pic5" property="pic5" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    gid, appKey, gamename, packagename, iconUrl, type, intro, platform, manufacturer, 
+    downloadUrl, adsUrl, adsVideoUrl, pic1, pic2, pic3, pic4, pic5, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yaykey.platform.entity.taobao.example.GameInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="start != null and pageSize != null" >
+      limit #{start}, #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from game_info
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from game_info
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yaykey.platform.entity.taobao.example.GameInfoExample" >
+    delete from game_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yaykey.platform.entity.taobao.GameInfo" >
+    insert into game_info (gid, appKey, gamename, 
+      packagename, iconUrl, type, 
+      intro, platform, manufacturer, 
+      downloadUrl, adsUrl, adsVideoUrl, 
+      pic1, pic2, pic3, pic4, 
+      pic5, create_time, update_time
+      )
+    values (#{gid,jdbcType=INTEGER}, #{appkey,jdbcType=VARCHAR}, #{gamename,jdbcType=VARCHAR}, 
+      #{packagename,jdbcType=VARCHAR}, #{iconurl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{intro,jdbcType=VARCHAR}, #{platform,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{downloadurl,jdbcType=VARCHAR}, #{adsurl,jdbcType=VARCHAR}, #{adsvideourl,jdbcType=VARCHAR}, 
+      #{pic1,jdbcType=VARCHAR}, #{pic2,jdbcType=VARCHAR}, #{pic3,jdbcType=VARCHAR}, #{pic4,jdbcType=VARCHAR}, 
+      #{pic5,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaykey.platform.entity.taobao.GameInfo" >
+    insert into game_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="appkey != null" >
+        appKey,
+      </if>
+      <if test="gamename != null" >
+        gamename,
+      </if>
+      <if test="packagename != null" >
+        packagename,
+      </if>
+      <if test="iconurl != null" >
+        iconUrl,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="downloadurl != null" >
+        downloadUrl,
+      </if>
+      <if test="adsurl != null" >
+        adsUrl,
+      </if>
+      <if test="adsvideourl != null" >
+        adsVideoUrl,
+      </if>
+      <if test="pic1 != null" >
+        pic1,
+      </if>
+      <if test="pic2 != null" >
+        pic2,
+      </if>
+      <if test="pic3 != null" >
+        pic3,
+      </if>
+      <if test="pic4 != null" >
+        pic4,
+      </if>
+      <if test="pic5 != null" >
+        pic5,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gid != null" >
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="appkey != null" >
+        #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="gamename != null" >
+        #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="packagename != null" >
+        #{packagename,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null" >
+        #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadurl != null" >
+        #{downloadurl,jdbcType=VARCHAR},
+      </if>
+      <if test="adsurl != null" >
+        #{adsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="adsvideourl != null" >
+        #{adsvideourl,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null" >
+        #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null" >
+        #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="pic4 != null" >
+        #{pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="pic5 != null" >
+        #{pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yaykey.platform.entity.taobao.example.GameInfoExample" resultType="java.lang.Integer" >
+    select count(*) from game_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update game_info
+    <set >
+      <if test="record.gid != null" >
+        gid = #{record.gid,jdbcType=INTEGER},
+      </if>
+      <if test="record.appkey != null" >
+        appKey = #{record.appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gamename != null" >
+        gamename = #{record.gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.packagename != null" >
+        packagename = #{record.packagename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iconurl != null" >
+        iconUrl = #{record.iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intro != null" >
+        intro = #{record.intro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platform != null" >
+        platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manufacturer != null" >
+        manufacturer = #{record.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downloadurl != null" >
+        downloadUrl = #{record.downloadurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adsurl != null" >
+        adsUrl = #{record.adsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adsvideourl != null" >
+        adsVideoUrl = #{record.adsvideourl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic1 != null" >
+        pic1 = #{record.pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic2 != null" >
+        pic2 = #{record.pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic3 != null" >
+        pic3 = #{record.pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic4 != null" >
+        pic4 = #{record.pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic5 != null" >
+        pic5 = #{record.pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update game_info
+    set gid = #{record.gid,jdbcType=INTEGER},
+      appKey = #{record.appkey,jdbcType=VARCHAR},
+      gamename = #{record.gamename,jdbcType=VARCHAR},
+      packagename = #{record.packagename,jdbcType=VARCHAR},
+      iconUrl = #{record.iconurl,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      intro = #{record.intro,jdbcType=VARCHAR},
+      platform = #{record.platform,jdbcType=VARCHAR},
+      manufacturer = #{record.manufacturer,jdbcType=VARCHAR},
+      downloadUrl = #{record.downloadurl,jdbcType=VARCHAR},
+      adsUrl = #{record.adsurl,jdbcType=VARCHAR},
+      adsVideoUrl = #{record.adsvideourl,jdbcType=VARCHAR},
+      pic1 = #{record.pic1,jdbcType=VARCHAR},
+      pic2 = #{record.pic2,jdbcType=VARCHAR},
+      pic3 = #{record.pic3,jdbcType=VARCHAR},
+      pic4 = #{record.pic4,jdbcType=VARCHAR},
+      pic5 = #{record.pic5,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaykey.platform.entity.taobao.GameInfo" >
+    update game_info
+    <set >
+      <if test="appkey != null" >
+        appKey = #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="gamename != null" >
+        gamename = #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="packagename != null" >
+        packagename = #{packagename,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null" >
+        iconUrl = #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadurl != null" >
+        downloadUrl = #{downloadurl,jdbcType=VARCHAR},
+      </if>
+      <if test="adsurl != null" >
+        adsUrl = #{adsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="adsvideourl != null" >
+        adsVideoUrl = #{adsvideourl,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null" >
+        pic1 = #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        pic2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null" >
+        pic3 = #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="pic4 != null" >
+        pic4 = #{pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="pic5 != null" >
+        pic5 = #{pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaykey.platform.entity.taobao.GameInfo" >
+    update game_info
+    set appKey = #{appkey,jdbcType=VARCHAR},
+      gamename = #{gamename,jdbcType=VARCHAR},
+      packagename = #{packagename,jdbcType=VARCHAR},
+      iconUrl = #{iconurl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      downloadUrl = #{downloadurl,jdbcType=VARCHAR},
+      adsUrl = #{adsurl,jdbcType=VARCHAR},
+      adsVideoUrl = #{adsvideourl,jdbcType=VARCHAR},
+      pic1 = #{pic1,jdbcType=VARCHAR},
+      pic2 = #{pic2,jdbcType=VARCHAR},
+      pic3 = #{pic3,jdbcType=VARCHAR},
+      pic4 = #{pic4,jdbcType=VARCHAR},
+      pic5 = #{pic5,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatch" parameterType="map" >
+    insert into game_info
+    (<include refid="Base_Column_List" />)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (
+      #{item.gid},#{item.appkey},#{item.gamename},#{item.packagename},#{item.iconurl},#{item.type},#{item.intro},#{item.platform},#{item.manufacturer},#{item.downloadurl},#{item.adsurl},#{item.adsvideourl},#{item.pic1},#{item.pic2},#{item.pic3},#{item.pic4},#{item.pic5},#{item.createTime},#{item.updateTime}
+      )
+    </foreach>
+  </insert>
+</mapper>
